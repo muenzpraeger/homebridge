@@ -15,6 +15,7 @@ import {
 } from "./api";
 import { Logger } from "./logger";
 import { Plugin } from "./plugin";
+import { injectChangeDetection } from "./util/breakingChangeDetector";
 
 const log = Logger.internal;
 
@@ -83,6 +84,8 @@ export class PluginManager {
 
   constructor(api: HomebridgeAPI, options?: PluginManagerOptions) {
     this.api = api;
+
+    injectChangeDetection();
 
     if (options) {
       if (options.customPluginPath) {
